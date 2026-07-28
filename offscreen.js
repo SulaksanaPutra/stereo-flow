@@ -41,11 +41,11 @@ function stopCapture(tabId) {
   console.log(`Successfully released audio capture resources for tab ${tabId}`);
 }
 
-// Message listener
+// Message listener for namespaced offscreen messages
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
     try {
-      if (message.type === 'START_CAPTURE') {
+      if (message.type === 'OFFSCREEN_START_CAPTURE') {
         const { tabId, streamId } = message;
 
         if (activeStreams.has(tabId)) {
@@ -66,9 +66,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             video: false
           });
         } catch (mediaError) {
-          console.error(`MediaStream acquisition error for tab ${tabId}:`, mediaError);
+          const errDetail = `${mediaError.name || 'DOMException'}: ${mediaError.message || 'Failed to acquire tab media stream'}`;
+          console.error(`MediaStream acquisition error for tab ${tabId}:`, errDetail, mediaError);
           stopCapture(tabId);
-          sendResponse({ success: false, error: mediaError.message || 'Failed to acquire tab media stream' });
+          sendResponse({ success: false, error: errDetail });
           return;
         }
 
@@ -121,11 +122,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         console.log(`Started audio capture for tab ${tabId}`);
         sendResponse({ success: true });
-      } else if (message.type === 'STOP_CAPTURE') {
+      } else if (message.type === 'OFFSCREEN_STOP_CAPTURE') {
         const { tabId } = message;
         stopCapture(tabId);
         sendResponse({ success: true });
-      } else if (message.type === 'SET_AUDIO_PARAMS') {
+      } else if (message.type === 'OFFSCREEN_SET_AUDIO_PARAMS') {
         const { tabId, pan, volume, isMuted, isMono } = message;
         const data = activeStreams.get(tabId);
 
@@ -145,7 +146,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           gainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.015);
         }
         sendResponse({ success: true });
-      } else if (message.type === 'UPDATE_SETTINGS') {
+      } else if (message.type === 'OFFSCREEN_UPDATE_SETTINGS') {
         const { limiterMode } = message;
         if (limiterMode) {
           currentLimiterMode = limiterMode;
