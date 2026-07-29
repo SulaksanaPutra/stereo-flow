@@ -519,7 +519,7 @@ async function startTabCapture(tab) {
   try {
     const streamId = await chrome.tabCapture.getMediaStreamId({ targetTabId: tab.id });
     if (!streamId) {
-      console.error('Failed to get tab media stream ID');
+      console.error('Failed to get media stream ID');
       return;
     }
 
