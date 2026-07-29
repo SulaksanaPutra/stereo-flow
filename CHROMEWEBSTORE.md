@@ -1,14 +1,14 @@
-# Chrome Web Store Listing — Stereo Balance & Volume Controller (StereoFlow)
+# Chrome Web Store Listing — StereoFlow
 
 > Last Updated: 2026-07-28
 
 ## Store Listing
 
 **Extension Name** [REQUIRED]
-Stereo Balance & Volume Controller (StereoFlow)
+StereoFlow
 
 **Short Description** [REQUIRED]
-Adjust audio balance (left/right panning), volume amplification up to 300%, and mono audio independently for each browser tab.
+Control tab audio balance (left/right panning), volume boost up to 300%, and mono audio independently per tab.
 
 **Detailed Description** [REQUIRED]
 StereoFlow lets you control the stereo balance (left/right panning) and volume level of individual browser tabs independently.

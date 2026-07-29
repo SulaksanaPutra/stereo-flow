@@ -1,7 +1,7 @@
 {
   "name": "stereo-flow",
   "version": "1.1.0",
-  "description": "Stereo Balance & Volume Controller Chrome Extension (StereoFlow)",
+  "description": "StereoFlow Chrome Extension - Tab Audio Balance & Volume Controller",
   "main": "background.js",
   "scripts": {
     "test": "node --test tests/*.test.js"

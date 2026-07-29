@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Stereo Balance & Volume Controller",
+  "name": "StereoFlow",
   "version": "1.1.0",
   "description": "Adjust audio balance (left/right panning), volume amplification, and mono audio independently for each tab.",
   "permissions": [
@@ -15,7 +15,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Stereo Controller"
+    "default_title": "StereoFlow"
   },
   "icons": {
     "16": "icons/icon-16.png",
